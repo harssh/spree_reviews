@@ -1,0 +1,29 @@
+<%= render "spree/shared/error_messages", :target => @review %>
+
+<p class="review_rating_field">
+    <%= f.label :rating %> <span class="required">*</span><br />
+    <%= render :partial => "spree/reviews/stars", :locals => {:stars => review.rating, :edit_enabled => true} %>
+  </p>
+
+
+<%= f.field_container :name do %>
+  <%= f.label :name %><span class="required">*</span><br />
+  <%= f.text_field :name, :maxlength => "255", :size => "50" %>
+<% end %>
+
+<%= f.field_container :title do %>
+  <%= f.label :title %><span class="required">*</span><br />
+  <%= f.text_field :title, :maxlength => "255", :size => "50" %>
+<% end %>
+
+<%= f.field_container :review do %>
+  <%= f.label :review %><br />
+  <%= f.text_area :review, :wrap => "virtual", :rows => "10", :cols => "60" %>
+<% end %>
+
+<% if Spree::Reviews::Config[:track_locale] %>
+<%= f.field_container :locale do %>
+  <%= f.label :locale %><br />
+  <%= f.select :locale, I18n.available_locales.map { |lc| [t(lc, :default => lc.to_s), lc.to_s] } %>
+<% end %>
+<% end %>

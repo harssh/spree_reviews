@@ -1,0 +1,13 @@
+<%= content_tag :h2, t(:leave_us_a_review_for), :class => 'new-review-title' %> 
+
+
+<%= form_for [:admin, @review] do |f| %>
+<fieldset data-hook="new_property">
+  <legend><%= t(:new_review) %></legend>
+  <%= render :partial => 'form', :locals => { :f => f , :review => @review} %>
+    <p class="review_submit">
+    <%= f.submit t(:submit_your_review), :class => "button bg_darkfirst" %> <%= t(:or) %> <%= link_to t(:back_reviews), admin_reviews_path %>
+  </p>
+  </fieldset>
+<% end %>
+
